@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.level-selector{
+  outline: 2px solid red;
+}
+.question-area{
+  outline: 2px solid blue;
+}
