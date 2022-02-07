@@ -13,8 +13,38 @@ code {
 }
 
 .level-selector{
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  justify-items: center;
   outline: 2px solid red;
+
 }
 .question-area{
+  background-color: bisque;
   outline: 2px solid blue;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.question-box{
+  padding: 1em;
+}
+
+.question-buttons{
+  display: flex;
+  padding: 1em;
+}
+
+.question-buttons * {
+  margin: auto;
+}
+
+
+
+.score{
+  display: block;
+  outline: 2px solid green;
+  width: 100%;
+}
+

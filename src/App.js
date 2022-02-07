@@ -5,10 +5,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import  Cards from ".//Cards.js";
 
 const App = () => {
 
-  const [chosenLevel, setChosenLevel] = useState(null)
+  const [chosenLevel, setChosenLevel] = useState('2')
+  const [words, setWords] = useState(null)
 
   const getRandomWords = () => {
 
@@ -23,13 +25,17 @@ const App = () => {
     };
 
     axios.request(options).then((response) => {
-      console.log(response.data);
+      setWords(response.data);
     }).catch((error) => {
       console.error(error);
     });
   }
 
-  console.log('chosen level', chosenLevel)
+  console.log('WORDS ARE:', words)
+
+  const returnToLevel = () => {
+    setChosenLevel(false)
+  }
 
   useEffect(() => {
     if(chosenLevel) {
@@ -43,7 +49,7 @@ const App = () => {
       {!chosenLevel && <div className="level-selector">
         <h1>Word Association App</h1>
         <p>Select your level to start</p>
-        <Box sx={{ maxWidth: 120 }}>
+        <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
             <InputLabel id="select">Levels</InputLabel>
             <Select
@@ -67,9 +73,12 @@ const App = () => {
           </FormControl>
         </Box>
       </div>}
-      {chosenLevel &&<div className="question-area">
-        <h1>Welcome to level: {chosenLevel} </h1>
-      </div>}
+      {chosenLevel &&<div>
+      <h1>Welcome to level: {chosenLevel} </h1>
+      <button onClick={returnToLevel}>Return</button>
+        {words == null ? <div></div> : <Cards words={words} />}
+      </div>
+      }
     </div>
   );
 }
