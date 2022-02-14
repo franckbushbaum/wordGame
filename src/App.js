@@ -9,19 +9,15 @@ import Cards from ".//Cards.js";
 
 const App = () => {
 
-  const [chosenLevel, setChosenLevel] = useState('2')
+  const [chosenLevel, setChosenLevel] = useState(null)
   const [words, setWords] = useState(null)
 
   const getRandomWords = () => {
 
     var options = {
       method: 'GET',
-      url: 'https://twinword-word-association-quiz.p.rapidapi.com/type1/',
+      url: 'http://localhost:5000/results',
       params: { level: chosenLevel, area: 'sat' },
-      headers: {
-        'x-rapidapi-host': 'twinword-word-association-quiz.p.rapidapi.com',
-        'x-rapidapi-key': 'bb38151e24msha271fe5e90f5b03p151d27jsnabf027f0721e'
-      }
     };
 
     axios.request(options).then((response) => {
@@ -31,7 +27,6 @@ const App = () => {
     });
   }
 
-  console.log('WORDS ARE:', words)
 
   const returnToLevel = () => {
     setChosenLevel(false)
