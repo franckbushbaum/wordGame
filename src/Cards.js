@@ -19,7 +19,7 @@ const Cards = ({ words }) => {
             setCorrectAnswers([...correctAnswers, option])
             setScore((score) => score + 1)
         } else {
-            setScore((score) => score + 1)
+            setScore((score) => score - 1)
         }
         setClicked([...clicked, option])
     }
@@ -28,30 +28,29 @@ const Cards = ({ words }) => {
     return (
         <>
             <div className="score">
-                <h2>Your score is: {score}</h2>
+                <h3>Your score is: {score}</h3>
             </div>
             <div className="question-area">
             {words.quizlist.map((question, questionIndex) => (
                 <div className="question-box">
-                    <Paper  elevation={24} sx={{ maxWidth: 275, margin: 4, padding: 1.5 }}>
-                        <h4>Options</h4>
+                    <Paper  elevation={24} sx={{ maxWidth: 275, borderRadius: 5, margin: 4, padding: 1.5, backgroundColor: 'gray', opacity: .8, outline: '2px solid #FCB5AC'}}>
+                        <h2>Options</h2>
                             {question.quiz.map((tip, _index) => (
-                                <Typography variant="h5">{tip}</Typography>
+                                <Typography variant="h5" sx={{opacity: 1}}>·{tip}</Typography>
                             ))}
                             <div className="question-buttons">
                                 {question.option.map((option, optionIndex) => (
                                     <>
-                                        <Button
+                                        <Button                                          
+                                            sx={{minWidth: .4, margin: 1}}
                                             disabled={clicked.includes(option)}
                                             variant="contained"
                                             onClick={() => checkAnswer(option, optionIndex + 1, question.correct)}>{option}
                                         </Button>
-                                        <p>{correctAnswers.includes(option) && <p>Correct!</p>} </p>
+                                        <p className="result">{correctAnswers.includes(option) && <p>Correct!</p>} </p>
                                     </>
                                 ))}
-
                             </div>
-                            <p>{question.correct}</p>
                     </Paper>
                 </div>
             ))}

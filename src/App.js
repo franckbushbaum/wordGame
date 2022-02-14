@@ -80,7 +80,7 @@ const App = () => {
 
         </div>}
           {chosenLevel && <div>
-            <h1 className='level-choose'>Welcome to level: {chosenLevel} </h1>
+            <h1 className='level-choose'>WELCOME TO LEVEL: {chosenLevel} ! </h1>
             <button className='level-choose-button' onClick={returnToLevel}>Return</button>
             {words == null ? <div></div> : <Cards words={words} />}
           </div>
